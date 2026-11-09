@@ -91,7 +91,7 @@ Open the local URL displayed in your terminal to use the application.
 
 ## 👩‍💻 Author
 
-**Anusha B.**
+**Srinidhi M D.**
 
-- GitHub: [anushab-2512](https://github.com/anushab-2512)
+- GitHub: [Srinidhi M D](https://github.com/srini1022)
 - Live Project: [Movie Intelligence System](https://movie-recommendation-success-predictor-system.streamlit.app/)
