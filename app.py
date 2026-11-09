@@ -1,17 +1,5 @@
 
 import os
-import streamlit as st
-
-TMDB_API_KEY = os.getenv("TMDB_API_KEY", "")
-
-if not TMDB_API_KEY:
-    try:
-        TMDB_API_KEY = st.secrets["TMDB_API_KEY"]
-    except (KeyError, FileNotFoundError):
-        TMDB_API_KEY = ""
-
-
-import os
 import pickle
 from pathlib import Path
 
@@ -21,6 +9,7 @@ import requests
 import streamlit as st
 import matplotlib.pyplot as plt
 import seaborn as sns
+from dotenv import load_dotenv
 
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.ensemble import RandomForestClassifier
@@ -41,12 +30,20 @@ st.set_page_config(
 )
 
 BASE_DIR = Path(__file__).resolve().parent
+load_dotenv(BASE_DIR / ".env")
+
+TMDB_API_KEY = os.getenv("TMDB_API_KEY", "").strip()
+if not TMDB_API_KEY:
+    try:
+        TMDB_API_KEY = st.secrets["TMDB_API_KEY"]
+    except (KeyError, FileNotFoundError):
+        TMDB_API_KEY = ""
+
 MOVIES_DICT_PATH = BASE_DIR / "movies_dict.pkl"
 NEW_DF_PATH = BASE_DIR / "movies.pkl"
 SIMILARITY_PATH = BASE_DIR / "similarity.pkl"
 TMDB_CSV_PATH = BASE_DIR / "contents" / "tmdb_5000_movies.csv"
 
-TMDB_API_KEY = os.getenv("TMDB_API_KEY")
 session = requests.Session()
 retry_strategy = Retry(
     total=3,
@@ -1157,4 +1154,3 @@ st.caption(
 #     "matrix; success predictions use TF-IDF text features and a "
 #     "Random Forest classifier."
 # )
-

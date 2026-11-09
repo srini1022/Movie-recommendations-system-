@@ -63,7 +63,13 @@ pip install -r requirements.txt
 
 ### 3. Configure the TMDB API key (optional)
 
-To display movie posters, configure your TMDB API key using an environment variable or Streamlit secrets. Never commit your API key to GitHub.
+To display movie posters locally, copy `.env.example` to `.env` and add your TMDB API key:
+
+```env
+TMDB_API_KEY=your_tmdb_api_key
+```
+
+The app loads `.env` automatically. Never commit `.env` or share your API key. For Streamlit Community Cloud, add `TMDB_API_KEY` under the app's **Settings → Secrets**.
 
 ### 4. Run the application
 
